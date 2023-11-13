@@ -1,16 +1,9 @@
-"use client";
 import "./crypto.css";
 //
-import { useEffect, useState } from "react";
 import axios from "axios";
 //
 import { Coin } from "@/components";
-export default function Crypto() {
-  let [coins, setCoins] = useState([]);
-
-  useEffect(() => {
-    getCoins();
-  }, []);
+export default async function Crypto() {
   const options = {
     method: "GET",
     url: "https://coinranking1.p.rapidapi.com/coins",
@@ -20,7 +13,7 @@ export default function Crypto() {
       "tiers[0]": "1",
       orderBy: "marketCap",
       orderDirection: "desc",
-      limit: "20",
+      limit: "50",
       offset: "0",
     },
     headers: {
@@ -28,17 +21,16 @@ export default function Crypto() {
       "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
     },
   };
-  let getCoins = () => {
-    axios.request(options).then((res) => {
-      setCoins([...res.data.data.coins]);
-    });
-  };
+  let coins = await axios.request(options).then((res) => {
+    return res.data.data.coins;
+  });
   return (
     <>
       <div>
         {coins.map((e, i) => {
           return (
             <Coin
+              key={i}
               rank={e.rank}
               img={e.iconUrl}
               name={e.name}
@@ -46,6 +38,7 @@ export default function Crypto() {
               change={e.change + "%"}
               volume={"$" + e["24hVolume"]}
               marketCap={"$" + e.marketCap}
+              uuid={e.uuid}
             />
           );
         })}

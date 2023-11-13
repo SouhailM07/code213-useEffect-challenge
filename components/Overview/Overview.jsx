@@ -1,12 +1,22 @@
+"use client";
+import { useDispatch, useSelector } from "react-redux";
+import { reset } from "@/app/redux/slices/coinSlice";
 import "./overview.css";
+import Link from "next/link";
 //
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default async function Overview() {
+export default function Overview() {
+  let [coin, setCoin] = useState("");
+  let dispatch = useDispatch();
+  let reduxCoin = useSelector((state) => state.coinId.coinId);
   const options = {
     method: "GET",
-    url: "https://coinranking1.p.rapidapi.com/coin/Qwsogvtv82FCd",
-    // url: `https://coinranking1.p.rapidapi.com/coin/${uuid}`
+    // url: "https://coinranking1.p.rapidapi.com/coin/Qwsogvtv82FCd",
+    url: `https://coinranking1.p.rapidapi.com/coin/${
+      reduxCoin || "Qwsogvtv82FCd"
+    }`,
     params: {
       referenceCurrencyUuid: "yhjMzLPhuIDl",
       timePeriod: "24h",
@@ -16,12 +26,19 @@ export default async function Overview() {
       "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
     },
   };
-
-  let coin = await axios.request(options).then((res) => res.data.data.coin);
-  // console.log(coin);
+  useEffect(() => {
+    axios.request(options).then((res) => setCoin(res.data.data.coin));
+  }, [reduxCoin]);
   return (
     <>
       <div className="text-white max-w-[60rem] m-auto">
+        <Link
+          onClick={() => dispatch(reset())}
+          href="/"
+          className="bg-bgComponent mb-[1rem] inline-block px-[1rem] rounded-md text-[1.2rem] py-1 "
+        >
+          Back
+        </Link>
         <Icon_title title={coin.name} />
         <Icon_s2 c={coin} />
         <Icon_table c={coin} />
@@ -45,7 +62,7 @@ const Icon_s2 = ({ c }) => {
   return (
     <>
       <div className="bg-bgComponent pb-[1.5rem] pt-[1rem] px-[1rem] mb-[1rem]">
-        <div className="bg-green-400 px-1 py-1 rounded-lg text-center w-[4.6rem] mb-[1rem] mt-[8px]">
+        <div className="bg-green-400 py-1 rounded-lg text-center px-[1.5rem] inline-block mb-[1rem] mt-[8px]">
           Rank #{c.rank}
         </div>
         <div className="grid grid-cols-2 items-center">
@@ -78,7 +95,7 @@ const Icon_table = ({ c }) => {
     },
     {
       label: "Circulating Supply",
-      info: c.supply.circulating,
+      info: c.supply?.circulating,
     },
   ];
   return (
@@ -86,7 +103,10 @@ const Icon_table = ({ c }) => {
       <ul className="grid grid-cols-2 gap-y-[1rem] py-[2rem] px-[1rem] gap-x-[2rem] bg-bgComponent mb-[1rem]">
         {arrOfTable.map((e, i) => {
           return (
-            <li className="flex justify-between pb-3 border-b-white border-b-[1px]">
+            <li
+              key={i}
+              className="flex justify-between pb-3 border-b-white border-b-[1px]"
+            >
               <div className="font-bold">{e.label}</div>
               <div className="text-[1.2rem] text-gray-400">{e.info}</div>
             </li>

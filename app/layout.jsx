@@ -12,8 +12,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <h1 className="text-white text-[3rem] text-center mb-[3rem]">
-          <span className="text-green-400">Crypto </span>
+        <h1 className="text-white text-[3rem] font-bold flex items-center justify-center text-center mb-[3rem]">
+          <CoinIcon />
+          <span className="text-green-400 mx-3">Crypto </span>
           Shadow
         </h1>
         <ReduxProvider>{children}</ReduxProvider>
@@ -21,3 +22,21 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+let CoinIcon = () => {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        style={{ fill: " #4ade80" }}
+        className="h-[3rem] w-[3rem]"
+      >
+        <path d="M12 10c3.976 0 8-1.374 8-4s-4.024-4-8-4-8 1.374-8 4 4.024 4 8 4z"></path>
+        <path d="M4 10c0 2.626 4.024 4 8 4s8-1.374 8-4V8c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path>
+        <path d="M4 14c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path>
+        <path d="M4 18c0 2.626 4.024 4 8 4s8-1.374 8-4v-2c0 2.626-4.024 4-8 4s-8-1.374-8-4v2z"></path>
+      </svg>
+    </>
+  );
+};
