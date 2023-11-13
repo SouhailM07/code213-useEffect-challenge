@@ -1,5 +1,8 @@
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
+// !redux
+import ReduxProvider from "./redux/ReduxProvider";
+
 const inter = Inter({ subsets: ["latin"], weight: ["400", "700"] });
 export const metadata = {
   title: "code213-cryptocurrency",
@@ -13,7 +16,7 @@ export default function RootLayout({ children }) {
           <span className="text-green-400">Crypto </span>
           Shadow
         </h1>
-        {children}
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );
