@@ -8,7 +8,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <h1 className="text-white text-[3rem] text-center mb-[3rem]">
+          <span className="text-green-400">Crypto </span>
+          Shadow
+        </h1>
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Style for WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4ade80; /* Set the color of the scrollbar thumb (the draggable part) to green */
+  border-radius: 10px; /* Optional: Round the corners of the thumb */
+}
+
+li {
+  /* border: 3px solid #4ade80; */
+}
+/* Style for Firefox */
+/* Note: Firefox does not support styling the scrollbar directly with CSS, so this will only work in WebKit browsers */
