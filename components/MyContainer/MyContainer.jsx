@@ -4,7 +4,7 @@ import { Crypto } from "@/components";
 export default function MyContainer() {
   return (
     <>
-      <div className="text-white text-[1.2rem] max-w-[95rem] m-auto">
+      <div className="text-white text-[1.2rem] max-w-[85rem] m-auto">
         <HeadInfo />
         <Crypto />
       </div>
@@ -17,9 +17,16 @@ let HeadInfo = () => {
 
   return (
     <>
-      <ul className="text-[1.3rem] shadow-xl border-2 px-[1.5rem] border-black grid grid-cols-6 py-[1rem]">
+      <ul
+        style={{ gridTemplateColumns: "15% 1fr 16% 16% 15% 15%" }}
+        className="text-[1.3rem] shadow-xl border-2 px-[1.5rem] border-black grid py-[1rem] font-bold"
+      >
         {arrOfInfo.map((e, i) => {
-          return <li key={i}>{e}</li>;
+          return (
+            <li key={i} className="place-self-start">
+              {e}
+            </li>
+          );
         })}
       </ul>
     </>

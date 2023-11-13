@@ -31,7 +31,6 @@ export default function Crypto() {
   let getCoins = () => {
     axios.request(options).then((res) => {
       setCoins([...res.data.data.coins]);
-      console.log(res.data.data.coins);
     });
   };
   return (
