@@ -2,6 +2,7 @@ import "./crypto.css";
 //
 import axios from "axios";
 //
+//
 import { Coin } from "@/components";
 export default async function Crypto() {
   const options = {
@@ -17,7 +18,7 @@ export default async function Crypto() {
       offset: "0",
     },
     headers: {
-      "X-RapidAPI-Key": "75bd216ca3msh386ce21a600d499p1894c5jsnb06a873ab366",
+      "X-RapidAPI-Key": process.env.API_KEY,
       "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
     },
   };

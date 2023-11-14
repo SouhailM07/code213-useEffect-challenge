@@ -6,14 +6,15 @@ import Link from "next/link";
 //
 import { useState, useEffect } from "react";
 import axios from "axios";
+//
 
 export default function Overview() {
+  let testedApiKey;
   let [coin, setCoin] = useState("");
   let dispatch = useDispatch();
   let reduxCoin = useSelector((state) => state.coinId.coinId);
   const options = {
     method: "GET",
-    // url: "https://coinranking1.p.rapidapi.com/coin/Qwsogvtv82FCd",
     url: `https://coinranking1.p.rapidapi.com/coin/${
       reduxCoin || "Qwsogvtv82FCd"
     }`,
@@ -22,7 +23,7 @@ export default function Overview() {
       timePeriod: "24h",
     },
     headers: {
-      "X-RapidAPI-Key": "75bd216ca3msh386ce21a600d499p1894c5jsnb06a873ab366",
+      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_API_KEY,
       "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
     },
   };
