@@ -7,9 +7,9 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
 //
+import { ResponsiveContainer, XAxis, YAxis, CartesianGrid } from "recharts";
 
 export default function Overview() {
-  let testedApiKey;
   let [coin, setCoin] = useState("");
   let dispatch = useDispatch();
   let reduxCoin = useSelector((state) => state.coinId.coinId);
@@ -41,6 +41,7 @@ export default function Overview() {
           Back
         </Link>
         <Icon_title title={coin.name} />
+        {/* <Icon_charts /> */}
         <Icon_s2 c={coin} />
         <Icon_table c={coin} />
         <Icon_description c={coin} />
@@ -48,6 +49,16 @@ export default function Overview() {
     </>
   );
 }
+
+const Icon_charts = () => {
+  return (
+    <>
+      <h1 className="text-center font-bold py-[1rem] mb-[1rem] text-[2rem] bg-bgComponent">
+        sb
+      </h1>
+    </>
+  );
+};
 
 const Icon_title = ({ title }) => {
   return (

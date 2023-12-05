@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
         <h1 className="text-white text-[3rem] font-bold flex items-center justify-center text-center mb-[3rem]">
           <CoinIcon />
           <span className="text-green-400 mx-3">Crypto </span>
-          Shadow
+          Currencies
         </h1>
         <ReduxProvider>{children}</ReduxProvider>
       </body>

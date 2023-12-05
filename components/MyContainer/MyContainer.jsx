@@ -19,7 +19,7 @@ let HeadInfo = () => {
     <>
       <ul
         style={{ gridTemplateColumns: "15% 1fr 16% 16% 15% 15%" }}
-        className="text-[1.3rem] shadow-xl border-2 px-[1.5rem] border-black grid py-[1rem] font-bold"
+        className="text-[1.3rem] shadow-xl bg-gray-900 px-[1.5rem]  grid py-[1rem] font-bold"
       >
         {arrOfInfo.map((e, i) => {
           return (

@@ -33,7 +33,7 @@ export default function Coin({
           router.push("/overview");
         }}
         style={{ gridTemplateColumns: "15% 1fr 16% 16% 15% 15%" }}
-        className="notFirstUl cursor-pointer px-[1.5rem] items-center grid  my-[1.7rem] py-[1rem] border-2 border-black shadow-xl"
+        className="notFirstUl cursor-pointer px-[1.5rem] items-center grid  my-[1.7rem] py-[1rem] bg-gray-900 shadow-xl"
       >
         {/* <Link id="sb" href="/overview" clas></Link> */}
         <li>{rank}</li>
